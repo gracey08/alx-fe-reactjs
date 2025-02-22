@@ -7,13 +7,19 @@ import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
-import ProfilePage from './ProfilePage';
+import UserContext from './UserContext'; // Import the UserContext
+import ProfilePage from './ProfilePage.jsx'; // Assuming ProfilePage.jsx is in src/
 
 function App() {
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
 
-  return <ProfilePage userData={userData} />;
+  return (
+    <UserContext.Provider value={userData}> {/* Wrap with Provider and pass userData */}
+      <ProfilePage />
+    </UserContext.Provider>
+  );
 }
+
 
 
 
