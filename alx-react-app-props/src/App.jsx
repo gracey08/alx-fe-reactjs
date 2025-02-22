@@ -7,7 +7,7 @@ import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
-import UserContext from './UserContext.js'; // Import the UserContext
+import UserContext from './UserContext'; // Import the UserContext
 import ProfilePage from './ProfilePage.jsx'; // Assuming ProfilePage.jsx is in src/
 
 function App() {
