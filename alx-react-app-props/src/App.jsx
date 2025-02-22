@@ -8,7 +8,7 @@ import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
 import UserContext from './UserContext';
-console.log('UserContext:', UserContext); // Should log the context object
+console.log('UserContext:', UserContext.js); // Should log the context object
 import ProfilePage from './ProfilePage.jsx';
 
 function App() {
