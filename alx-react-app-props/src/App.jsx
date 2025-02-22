@@ -7,18 +7,16 @@ import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
-import UserContext from './UserContext.js';
-import ProfilePage from './ProfilePage.jsx';  // Fixed import with extension
+import ProfilePage from './ProfilePage';
 
 function App() {
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
 
-  return (
-    <UserContext.Provider value={userData}>
-      <ProfilePage />
-    </UserContext.Provider>
-  );
+  return <ProfilePage userData={userData} />;
 }
+
+
+
 
 //   const [count, setCount] = useState(0)
 
