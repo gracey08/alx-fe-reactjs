@@ -1,5 +1,5 @@
 // src/App.jsx
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useParams } from 'react-router-dom'; // Import required routing components
 import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
@@ -29,7 +29,7 @@ function App() {
 
 // Wrapper to extract recipeId from URL params
 const RecipeDetailsWrapper = () => {
-  const { recipeId } = useParams();
+  const { recipeId } = useParams(); // Extract recipeId from the route
   return <RecipeDetails recipeId={recipeId} />;
 };
 
