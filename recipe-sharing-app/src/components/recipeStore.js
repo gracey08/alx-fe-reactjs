@@ -4,7 +4,9 @@ import { create } from 'zustand';
 const useRecipeStore = create((set) => ({
   recipes: [],
   searchTerm: '',
-  filteredRecipes: [], // Initially empty, will mirror recipes when no search term
+  filteredRecipes: [],
+  favorites: [], // Array of recipe IDs marked as favorites
+  recommendations: [], // Array of recommended recipes
   addRecipe: (newRecipe) =>
     set((state) => ({
       recipes: [...state.recipes, newRecipe],
@@ -16,6 +18,8 @@ const useRecipeStore = create((set) => ({
     set((state) => ({
       recipes: state.recipes.filter((recipe) => recipe.id !== recipeId),
       filteredRecipes: state.filteredRecipes.filter((recipe) => recipe.id !== recipeId),
+      favorites: state.favorites.filter((id) => id !== recipeId), // Remove from favorites if deleted
+      recommendations: state.recommendations.filter((recipe) => recipe.id !== recipeId),
     })),
   updateRecipe: (updatedRecipe) =>
     set((state) => ({
@@ -23,6 +27,9 @@ const useRecipeStore = create((set) => ({
         recipe.id === updatedRecipe.id ? updatedRecipe : recipe
       ),
       filteredRecipes: state.filteredRecipes.map((recipe) =>
+        recipe.id === updatedRecipe.id ? updatedRecipe : recipe
+      ),
+      recommendations: state.recommendations.map((recipe) =>
         recipe.id === updatedRecipe.id ? updatedRecipe : recipe
       ),
     })),
@@ -34,6 +41,33 @@ const useRecipeStore = create((set) => ({
         recipe.title.toLowerCase().includes(term.toLowerCase())
       ),
     })),
+  addFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.includes(recipeId)
+        ? state.favorites // Avoid duplicates
+        : [...state.favorites, recipeId],
+    })),
+  removeFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.filter((id) => id !== recipeId),
+    })),
+  generateRecommendations: () =>
+    set((state) => {
+      // Simple recommendation logic: suggest recipes not favorited, based on favorites' "type"
+      const favoriteRecipes = state.recipes.filter((recipe) =>
+        state.favorites.includes(recipe.id)
+      );
+      const recommended = state.recipes
+        .filter(
+          (recipe) =>
+            !state.favorites.includes(recipe.id) && // Exclude already favorited
+            favoriteRecipes.some((fav) =>
+              recipe.title.toLowerCase().includes(fav.title.toLowerCase().split(' ')[0]) // Match first word (e.g., "Chicken" in "Chicken Soup")
+            )
+        )
+        .slice(0, 3); // Limit to 3 recommendations
+      return { recommendations: recommended };
+    }),
 }));
 
 export default useRecipeStore;
