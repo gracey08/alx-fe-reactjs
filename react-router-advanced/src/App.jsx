@@ -5,6 +5,7 @@ import Profile from './components/Profile';
 import Post from './components/Post';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
+import BlogPost from './components/BlogPost';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -18,6 +19,8 @@ function App() {
                         <li><Link to="/profile">Profile</Link></li>
                         <li><Link to="/post/1">Post 1</Link></li>
                         <li><Link to="/post/2">Post 2</Link></li>
+                        <li><Link to="/blog/1">Blog 1</Link></li>
+                        <li><Link to="/blog/2">Blog 2</Link></li>
                         <li><Link to="/login">Login</Link></li>
                         <li>
                             <button onClick={() => setIsAuthenticated(false)}>Log Out</button>
@@ -36,6 +39,7 @@ function App() {
                         }
                     />
                     <Route path="/post/:postId" element={<Post />} />
+                    <Route path="/blog/:id" element={<BlogPost />} />
                     <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
                 </Routes>
             </div>
