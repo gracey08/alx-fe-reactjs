@@ -15,7 +15,6 @@ function FormikForm() {
     });
 
     const handleSubmit = (values, { resetForm }) => {
-        // Simulate API call
         console.log('Form submitted:', values);
         alert('Registration successful (simulated)!');
         resetForm();
