@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
-function Login({ setIsAuthenticated }) {
+function Login() {
+    const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        setIsAuthenticated(true);
+        login();
         navigate('/profile');
     };
 
