@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TodoList from './TodoList'; // Import TodoList component
 import './App.css';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     e.preventDefault();
     if (!newTodo.trim()) return;
     const todo = {
-      id: Date.now(), // Simple unique ID using timestamp
+      id: Date.now(),
       text: newTodo,
       completed: false,
     };
@@ -47,31 +48,7 @@ function App() {
           Add
         </button>
       </form>
-      <ul data-testid="todo-list">
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            onClick={() => toggleTodo(todo.id)}
-            style={{
-              textDecoration: todo.completed ? 'line-through' : 'none',
-              cursor: 'pointer',
-            }}
-            data-testid={`todo-item-${todo.id}`}
-          >
-            {todo.text}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                deleteTodo(todo.id);
-              }}
-              style={{ marginLeft: '10px' }}
-              data-testid={`delete-button-${todo.id}`}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </div>
   );
 }
