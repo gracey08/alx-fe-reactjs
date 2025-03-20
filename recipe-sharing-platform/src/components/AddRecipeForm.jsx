@@ -62,18 +62,18 @@ const AddRecipeForm = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 sm:p-6 lg:p-8">
-      <h1 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-10 text-gray-800">
+    <div className="container mx-auto p-4 sm:p-6 md:p-7 lg:p-8">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-10 md:mb-12 text-gray-800">
         Add a New Recipe
       </h1>
       <form
         onSubmit={handleSubmit}
-        className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6 sm:p-8"
+        className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6 sm:p-8 md:p-10"
       >
-        <div className="mb-6">
+        <div className="mb-6 md:mb-8">
           <label
             htmlFor="title"
-            className="block text-gray-700 font-semibold text-lg mb-2"
+            className="block text-gray-700 font-semibold text-lg md:text-xl mb-2 md:mb-3"
           >
             Recipe Title
           </label>
@@ -83,20 +83,20 @@ const AddRecipeForm = () => {
             name="title"
             value={formData.title}
             onChange={handleChange}
-            className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg ${
+            className={`w-full p-3 md:p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg md:text-xl ${
               errors.title ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="Enter the recipe title"
           />
           {errors.title && (
-            <p className="text-red-500 text-sm mt-1">{errors.title}</p>
+            <p className="text-red-500 text-sm md:text-base mt-1 md:mt-2">{errors.title}</p>
           )}
         </div>
 
-        <div className="mb-6">
+        <div className="mb-6 md:mb-8">
           <label
             htmlFor="ingredients"
-            className="block text-gray-700 font-semibold text-lg mb-2"
+            className="block text-gray-700 font-semibold text-lg md:text-xl mb-2 md:mb-3"
           >
             Ingredients (one per line)
           </label>
@@ -105,21 +105,21 @@ const AddRecipeForm = () => {
             name="ingredients"
             value={formData.ingredients}
             onChange={handleChange}
-            className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg ${
+            className={`w-full p-3 md:p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg md:text-xl ${
               errors.ingredients ? 'border-red-500' : 'border-gray-300'
             }`}
             rows="5"
             placeholder="List ingredients, one per line (e.g., 200g spaghetti)"
           />
           {errors.ingredients && (
-            <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>
+            <p className="text-red-500 text-sm md:text-base mt-1 md:mt-2">{errors.ingredients}</p>
           )}
         </div>
 
-        <div className="mb-8">
+        <div className="mb-8 md:mb-10">
           <label
             htmlFor="steps"
-            className="block text-gray-700 font-semibold text-lg mb-2"
+            className="block text-gray-700 font-semibold text-lg md:text-xl mb-2 md:mb-3"
           >
             Preparation Steps
           </label>
@@ -128,20 +128,20 @@ const AddRecipeForm = () => {
             name="steps"
             value={formData.steps}
             onChange={handleChange}
-            className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg ${
+            className={`w-full p-3 md:p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg md:text-xl ${
               errors.steps ? 'border-red-500' : 'border-gray-300'
             }`}
             rows="5"
             placeholder="Describe the preparation steps"
           />
           {errors.steps && (
-            <p className="text-red-500 text-sm mt-1">{errors.steps}</p>
+            <p className="text-red-500 text-sm md:text-base mt-1 md:mt-2">{errors.steps}</p>
           )}
         </div>
 
         <button
           type="submit"
-          className="w-full py-3 bg-blue-500 text-white rounded-lg text-lg font-semibold hover:bg-blue-600 transition-colors duration-300"
+          className="w-full py-3 md:py-4 bg-blue-500 text-white rounded-lg text-lg md:text-xl font-semibold hover:bg-blue-600 transition-colors duration-300"
         >
           Add Recipe
         </button>
